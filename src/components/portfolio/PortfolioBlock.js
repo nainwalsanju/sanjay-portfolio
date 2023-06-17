@@ -11,6 +11,7 @@ function PortfolioBlock(props) {
             src={image}
             alt={'mockup'}
             width={'30vw'}
+            maxHeight={'15vw'}
             style={{
                 objectFit: 'cover',
                 borderRadius: '25px',

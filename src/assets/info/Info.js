@@ -1,5 +1,6 @@
 import self from '../img/self.png';
 import { colors } from '../colors/mainGradient';
+import virtuellyDemo from '../img/virtuelly.png';
 
 export const info = {
   firstName: 'Sanjay',
@@ -113,10 +114,9 @@ export const info = {
     // This is where your portfolio projects will be detailed
     //   for the null ones, the button will not show up
     {
-      title: 'CryptoGoGo - Online Cryptocurrency Community and Trading platform',
-      live: null, //this should be a link to the live version of your project, think github pages, netlify, heroku, etc. Or your own domain, if you have it.
-      source: 'https://github.com/Andy8647/CryptoGoGo', // this should be a link to the **repository** of the project, where the code is hosted.
-      image: 'https://i.ibb.co/6BsWs6f/01.jpg',
+      title: 'Virtuelly-The best virtual, hybrid and in-person team events, one place for all your culture needs.',
+      live: 'https://virtuelly.com/', //this should be a link to the live version of your project, think github pages, netlify, heroku, etc. Or your own domain, if you have it.
+      image: virtuellyDemo,
     },
     {
       title: 'Dynrank.js - High-performance dynamic bar chart visualization library',
