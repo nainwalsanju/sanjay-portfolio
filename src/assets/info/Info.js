@@ -160,4 +160,55 @@ export const info = {
     //   image: 'https://i.ibb.co/HFkMKtH/02.jpg',
     // },
   ],
+  workExperience: [
+    {
+      company: "BharatPe - Gurugram (Remote)",
+      position: "Software Development Engineer - II",
+      duration: "June 2022 - Present",
+      description: [
+        "Migrated Database with data of 10 Billion+ records from RDS to Aurora.",
+        "Created and developed a robust payment service from scratch, encompassing refund functionalities and payment links for seamless financial transactions.",
+        "Deployed and maintained a real-time anomaly detector for transaction behavior analysis, ensuring system security and integrity with an alert system for timely response.",
+        "Collaborated with the team to troubleshoot and resolve production bugs, minimizing downtime and ensuring smooth operations.",
+        "Implemented RESTful APIs, conducted thorough unit testing, and utilized a robust tech stack including Java 8, MySQL, Kafka, Spring Boot, Redis, Kubernetes, and Jenkins for delivering high-quality and secure applications.",
+      ],
+    },
+    {
+      company: "EzeTap by RazorPay - Bangalore (Remote)",
+      position: "Software Engineer BackEnd",
+      duration: "January 2022 - May 2022",
+      description: [
+        "Developed Credit Account book app with improved order and review management.",
+        "Designed and implemented efficient database architecture.",
+        "Conducted rigorous unit testing for high-quality and secure application.",
+      ],
+    },
+    {
+      company: "Virtuelly Inc. - Seattle, USA (Remote)",
+      position: "Software Development Engineer",
+      duration: "April 2021 - December 2022",
+      description: [
+        "Developed and launched an interactive low latency video conferencing application with multiple interactive environments.",
+        "Developed and improved UX by implementing Interaction Creation Feature, REST APIs, and integrating payment gateways for Virtuelly Website providing entertainment experiences in production environment.",
+      ],
+    },
+    {
+      company: 'Infosys Technologies Ltd.',
+      position: 'System Engineer (Java Developer)',
+      duration: 'February 2020 - March 2021',
+      description: [
+        'Worked as a System Engineer (Java Developer) at Infosys Technologies Ltd.',
+      ],
+    },
+    {
+      company: 'Infosys Technologies Ltd.',
+      position: 'System Engineer (Trainee)',
+      duration: 'February 2020 - March 2021',
+      description: [
+        'Worked as a System Engineer (Trainee) at Infosys Technologies Ltd.',
+      ],
+    },
+    // Add more work experience items here if needed
+  ]
+    
 };

@@ -96,9 +96,48 @@ export default function About() {
     );
   }
 
+  function workExperienceText() {
+    return (
+      <>
+        <p>
+          <span style={{ color: info.baseColor }}>
+            {info.firstName}
+            {info.lastName.toLowerCase()} $
+          </span>{" "}
+          cd work-experience
+        </p>
+        <p>
+          <span style={{ color: info.baseColor }}>
+            work-experience <span className={Style.green}>(main)</span> $
+          </span>{" "}
+          ls
+        </p>
+        <ul>
+          {info.workExperience.map((experience, index) => (
+            <li key={index} className={Style.workExperienceItem}>
+              <p className={Style.company}>{experience.company}</p>
+              <p className={Style.position}>{experience.position}</p>
+              <p className={Style.duration}>{experience.duration}</p>
+              <ul className={Style.descriptionList}>
+                {experience.description.map((bulletPoint, bulletIndex) => (
+                  <li className={Style.descriptionList} key={bulletIndex}>{bulletPoint}</li>
+                ))}
+              </ul>
+              {index !== info.workExperience.length - 1 && <hr />} {/* Add horizontal line except for the last work experience */}
+            </li>
+          ))}
+        </ul>
+      </>
+    );
+  }
+  
+  
+  
+
   return (
     <Box display={'flex'} flexDirection={'column'} alignItems={'center'} mt={'3rem'}>
       <Terminal text={aboutMeText()} />
+      <Terminal text={workExperienceText()} /> {/* Add work experience terminal */}
       <Terminal text={skillsText()} />
       <Terminal text={miscText()} />
     </Box>
