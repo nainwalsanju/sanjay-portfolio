@@ -134,13 +134,6 @@ const firebaseConfig = {
     <meta property="twitter:image" content="https://andy8647.com/website.jpg">
 ```
 
-
-### 6. Deployment
-
-I recommend using [Netlify](https://www.netlify.com/) for deployment. It's free and easy to use. You can follow the instructions [here](https://docs.netlify.com/site-deploys/create-deploys/#deploy-with-git) to deploy your site.
-
-P.S. If you are using Netlify, to resolved the bug from `react-router-dom`, you need to add a `_redirects` file in the `public` folder and add the following code:
-
 ```
 /*    /index.html   200
 ```
@@ -148,10 +141,6 @@ P.S. If you are using Netlify, to resolved the bug from `react-router-dom`, you 
 ---
 
 And you're done!
-
-If you have any questions or issues with the setup process, feel free to contact me by any of the means below:
-
-[Twitter](https://twitter.com/Andy8647L) | andy8647lgc@gmail.com
 
 Finally, thanks to the original author [paytonjewell](https://github.com/paytonjewell) for the well built template.
 
