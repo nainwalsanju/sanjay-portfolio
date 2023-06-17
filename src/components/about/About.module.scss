@@ -19,3 +19,28 @@
     line-height: 1.75;
   }
 }
+
+.workExperienceItem {
+  margin-bottom: 1rem;
+  /* Add any other styles you want for the work experience items */
+}
+
+.descriptionList {
+  font-size: medium;
+  margin-left: 10px;
+  list-style-type: circle;
+}
+
+.position {
+  font-size: x-large;
+  font-style: italic;
+}
+
+.duration {
+  font-size: medium;
+  font-style: italic;
+}
+
+.company {
+  font-weight: bold;
+}
