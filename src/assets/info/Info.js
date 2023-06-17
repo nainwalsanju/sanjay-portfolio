@@ -12,7 +12,7 @@ export const info = {
   miniBio: [
     // these are just some "tidbits" about yourself. You can look at mine https://paytonjewell.github.io/#/ for an example if you'd like
     {
-      emoji: 'IN',
+      emoji: '🇮🇳',
       text: 'Based in Dehardun, India',
     },
     {
@@ -27,7 +27,7 @@ export const info = {
   socials: [
     {
       link: 'https://drive.google.com/file/d/1Rm3S-u6_7r4yDQefWNypFrHlhaY6HII9/view?usp=sharing', // this should be https://yourname.com/resume.pdf once you've deployed
-      icon: 'fa fa-file',
+      icon: 'fa fa-file-pdf-o',
       label: 'resume',
     },
     {
@@ -55,48 +55,40 @@ export const info = {
   skills: {
     // you dont havew to strictly follow the 'languages', 'frameworks', 'databases', 'cloudServices', and 'tools' categories. You can add your own if you'd like.
     // but the structure should be the same, an array of strings and the key should be one word, no spaces.
-    languages: ['TypeScript', 'JavaScript', 'Java', 'PHP', 'Python', 'HTML/CSS'],
+    languages: ['C++','Python','Matlab/Octave','TypeScript', 'JavaScript', 'Java', 'HTML/CSS'],
     frameworks: [
       'React',
-      'Redux',
-      'Material UI',
-      'Vue',
-      'Express',
-      'NestJS',
+      'Angular',
       'Spring Boot',
-      'Bootstrap/jQuery',
-      'Zend',
+      'Spring MVC',
       'Django',
+      'WebRTC'
     ],
-    databases: ['MySQl', 'MongoDB', 'PostgreSQL', 'Mybatis', 'TypeORM'],
-    cloudServices: ['AWS S3', 'AWS EC2', 'AWS SNS', 'Google Analytics', 'Heroku', 'Netlify'],
+    databases: ['MySQl', 'MongoDB', 'PostgreSQL','Firebase','Redis'],
+    cloudServices: ['AWS S3', 'AWS EC2','Google Analytics', 'Vercel'],
     tools: [
       'Git',
       'Postman',
       'Docker',
       'Swagger',
       'Elasticsearch',
-      'npm',
-      'yarn',
       'Maven',
       'Jenkins',
       'Jira',
-      'Confluence',
-      'Bitbucket',
+      'Devtron',
+      'Grafana',
+      'New-relic',
+      'Coralogix',
+      'Kafka',
+      'BurpSuite',
+      'JUnit',
+      'TestNG'
     ],
   },
   hobbies: [
     {
-      label: 'Photography',
-      emoji: '📷',
-    },
-    {
       label: 'Video Games',
       emoji: '🎮',
-    },
-    {
-      label: 'Guitar',
-      emoji: '🎸',
     },
     {
       label: 'Anime',
@@ -111,8 +103,8 @@ export const info = {
       emoji: '✈️',
     },
     {
-      label: 'Fishing',
-      emoji: '🎣',
+      label: 'Photography',
+      emoji: '📷',
     },
     // Same as above, change the emojis to match / relate to your hobbies or interests.
     // You can also remove the emojis if you'd like, I just think they look cute :P
