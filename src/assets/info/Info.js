@@ -51,7 +51,7 @@ export const info = {
     //   label: 'twitter',
     // },
   ],
-  bio: "Hello! I'm Sanjay Nainwal. Full Stack Developer(BE-Heavy). I studied Computer Science at Graphic Era University, I enjoy building scalable web applications and learning new technologies. I'm currently working at BharatPe as SDE-2. I love to travel and explore new places. I'm currently based in Dehradun, India.",
+  bio: "Meet Sanjay Nainwal, a Full Stack Developer (BE-Heavy) with a passion for building scalable web applications. Experienced in Java, WebRTC, and the Spring Framework. Proficient in RESTful API and SOAP API design, working with SQL and Non-SQL databases. Currently an SDE-2 at BharatPe, contributing to the growth and success of a dynamic team. Enjoys traveling and exploring new places. Based in Dehradun, India. Results-driven with a demonstrated ability to develop efficient anomaly detectors and network security solutions. Committed to continuous learning and adapting to new technologies.",
   skills: {
     // you dont havew to strictly follow the 'languages', 'frameworks', 'databases', 'cloudServices', and 'tools' categories. You can add your own if you'd like.
     // but the structure should be the same, an array of strings and the key should be one word, no spaces.
