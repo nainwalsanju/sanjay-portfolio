@@ -11,7 +11,7 @@ function PortfolioBlock(props) {
             src={image}
             alt={'mockup'}
             width={'30vw'}
-            maxHeight={'15vw'}
+            maxHeight={'20vw'}
             style={{
                 objectFit: 'cover',
                 borderRadius: '25px',
@@ -24,7 +24,7 @@ function PortfolioBlock(props) {
                     '  0 100px 80px rgba(0, 0, 0, 0.12)',
             }}
         />
-      <h1 style={{ fontSize: '2rem' }}>{title}</h1>
+      <h1 style={{ fontSize: '1rem' }}>{title}</h1>
       <Box
         className={'portfolio'}
         display={'flex'}
