@@ -8,7 +8,7 @@ export default function Portfolio() {
     <Box>
       <Grid container display={'flex'} justifyContent={'center'}>
         {info.portfolio.map((project, index) => (
-          <Grid item xs={12} md={6} key={index}>
+          <Grid item xs={12} md={12} key={index}>
             <PortfolioBlock
               image={project.image}
               live={project.live}

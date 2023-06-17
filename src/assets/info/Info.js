@@ -1,6 +1,11 @@
 import self from '../img/self.png';
 import { colors } from '../colors/mainGradient';
 import virtuellyDemo from '../img/virtuelly.png';
+import portfolioDemo from '../img/portfolio.png';
+import iotDemo from '../img/iot.png';
+import driverDemo from '../img/driver.jpg';
+import cartoonDemo from '../img/cartoon.png';
+import cartoon2Demo from '../img/cartoon2.png';
 
 export const info = {
   firstName: 'Sanjay',
@@ -114,15 +119,45 @@ export const info = {
     // This is where your portfolio projects will be detailed
     //   for the null ones, the button will not show up
     {
-      title: 'Virtuelly-The best virtual, hybrid and in-person team events, one place for all your culture needs.',
+      title: 'Portfolio-Website',
+      live: 'https://sanjay-portfolio-two.vercel.app/',
+      source: 'https://github.com/nainwalsanju/sanjay-portfolio',
+      image: portfolioDemo,
+    },
+    {
+      title: 'IOT-Botnet-Attack-Detection-And-Classification',
+      live: null,
+      source: 'https://github.com/nainwalsanju/IOT-Botnet-attack-Detection-and-classification',
+      image: iotDemo,
+    },
+    {
+      title: 'Driver-drowsiness-detection',
+      live: null,
+      source: 'https://github.com/nainwalsanju/driver-drowsiness-detection',
+      image: driverDemo,
+    },
+    {
+      title: 'Virtuelly-The best virtual, hybrid and in-person team events',
       live: 'https://virtuelly.com/', //this should be a link to the live version of your project, think github pages, netlify, heroku, etc. Or your own domain, if you have it.
       image: virtuellyDemo,
     },
     {
-      title: 'Dynrank.js - High-performance dynamic bar chart visualization library',
+      title: 'Cartoonify image using Computer Vision',
       live: null,
-      source: 'https://github.com/Andy8647/dynrank',
-      image: 'https://i.ibb.co/HFkMKtH/02.jpg',
+      source: 'https://github.com/nainwalsanju/cartoonify_project',
+      image: cartoon2Demo,
     },
+    {
+      title: 'Image Processing Utilities',
+      live: null,
+      source: 'https://github.com/nainwalsanju/image_proceesing_utilities',
+      image: cartoonDemo,
+    },
+    // {
+    //   title: 'Dynrank.js - High-performance dynamic bar chart visualization library',
+    //   live: null,
+    //   source: 'https://github.com/Andy8647/dynrank',
+    //   image: 'https://i.ibb.co/HFkMKtH/02.jpg',
+    // },
   ],
 };
