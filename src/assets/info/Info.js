@@ -2,26 +2,26 @@ import self from '../img/self.png';
 import { colors } from '../colors/mainGradient';
 
 export const info = {
-  firstName: 'Andy',
-  lastName: 'Luo',
-  initials: 'AL', // the example uses first and last, but feel free to use three or more if you like.
-  position: 'a Full Stack Developer',
+  firstName: 'Sanjay',
+  lastName: 'Nainwal',
+  initials: 'SN', // the example uses first and last, but feel free to use three or more if you like.
+  position: 'Full Stack Developer(BE-Heavy)',
   selfPortrait: self, // don't change this unless you want to name your self-portrait in the "img" folder something else!
   gradient: `-webkit-linear-gradient(135deg, ${colors})`, // don't change this either
   baseColor: colors[0],
   miniBio: [
     // these are just some "tidbits" about yourself. You can look at mine https://paytonjewell.github.io/#/ for an example if you'd like
     {
-      emoji: '🇨🇦',
-      text: 'based in the Toronto, Canada',
+      emoji: 'IN',
+      text: 'Based in Dehardun, India',
     },
     {
       emoji: '💻',
-      text: 'Full Stack Developer at commonsku',
+      text: 'Software Development Engineer II at BharatPe',
     },
     {
       emoji: '📧',
-      text: 'andy8647lgc@gmail.com',
+      text: 'sanjaynainwal129@gmail.com',
     },
   ],
   socials: [
@@ -31,27 +31,27 @@ export const info = {
       label: 'resume',
     },
     {
-      link: 'https://instagram.com/andy_lgc?igshid=YmMyMTA2M2Y=',
+      link: 'https://instagram.com/nainwalsanju?igshid=YmMyMTA2M2Y=',
       icon: 'fa fa-instagram',
       label: 'instagram',
     },
     {
-      link: 'https://github.com/Andy8647',
+      link: 'https://github.com/nainwalsanju',
       icon: 'fa fa-github',
       label: 'github',
     },
     {
-      link: 'https://www.linkedin.com/in/gancheng-luo-andy/',
+      link: 'https://www.linkedin.com/in/sanjay-nainwal/',
       icon: 'fa fa-linkedin',
       label: 'linkedin',
     },
-    {
-      link: 'https://twitter.com/Andy8647L',
-      icon: 'fa fa-twitter',
-      label: 'twitter',
-    },
+    // {
+    //   link: 'https://twitter.com/nainwalsanju',
+    //   icon: 'fa fa-twitter',
+    //   label: 'twitter',
+    // },
   ],
-  bio: "Hello! I'm Gancheng (Andy) Luo. I'm a Full Stack Developer. I studied CompSci at UofT, I enjoy building web applications and learning new technologies. I'm currently working at commonsku as a Full Stack Developer. I'm also a freelance photographer. I love to travel and explore new places. I'm currently based in Toronto, Canada.",
+  bio: "Hello! I'm Sanjay Nainwal. Full Stack Developer(BE-Heavy). I studied Computer Science at Graphic Era University, I enjoy building scalable web applications and learning new technologies. I'm currently working at BharatPe as SDE-2. I love to travel and explore new places. I'm currently based in Dehradun, India.",
   skills: {
     // you dont havew to strictly follow the 'languages', 'frameworks', 'databases', 'cloudServices', and 'tools' categories. You can add your own if you'd like.
     // but the structure should be the same, an array of strings and the key should be one word, no spaces.

@@ -60,7 +60,7 @@ export default function BaseLayout() {
             <Route exact path={'/portfolio'} element={<Portfolio />} />
           </Routes>
         </Grid>
-        <Grid item>
+        {/* <Grid item>
           <Box
             component={'footer'}
             display={'flex'}
@@ -80,7 +80,7 @@ export default function BaseLayout() {
             </p>
             <p>&copy; 2023</p>
           </Box>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Box>
   );
