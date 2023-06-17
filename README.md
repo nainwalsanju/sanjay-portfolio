@@ -2,13 +2,11 @@
 
 ## a portfolio for developers
 
-![screenshot](https://andy8647.com/website.jpg)
+![screenshot](https://sanjay-portfolio-two.vercel.app/website.jpg)
 
-[View Live Demo](https://andy8647.com/)
+[View Live Demo](https://sanjay-portfolio-two.vercel.app/)
 
 Attention: This is based on paytonjewell's [react-portfolio-template](https://github.com/paytonjewell/ReactPortfolioTemplate)
-I just added particlets background, OS dark mode detection and watch, Google Analytics.
-Elements redesigned by [Ingrid Fei](https://ingrid0126.com)
 
 
 ### Original README:
