@@ -4,7 +4,7 @@ import virtuellyDemo from '../img/virtuelly.png';
 import portfolioDemo from '../img/portfolio.png';
 import iotDemo from '../img/iot.png';
 import driverDemo from '../img/driver.jpg';
-import cartoonDemo from '../img/cartoon.png';
+import cartoonDemo from '../img/image_processing.jpg';
 import cartoon2Demo from '../img/cartoon2.png';
 
 export const info = {
