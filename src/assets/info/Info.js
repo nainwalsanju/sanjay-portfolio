@@ -153,12 +153,6 @@ export const info = {
       source: 'https://github.com/nainwalsanju/image_proceesing_utilities',
       image: cartoonDemo,
     },
-    // {
-    //   title: 'Dynrank.js - High-performance dynamic bar chart visualization library',
-    //   live: null,
-    //   source: 'https://github.com/Andy8647/dynrank',
-    //   image: 'https://i.ibb.co/HFkMKtH/02.jpg',
-    // },
   ],
   workExperience: [
     {

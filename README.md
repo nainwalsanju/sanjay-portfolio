@@ -108,7 +108,7 @@ const firebaseConfig = {
 ### 5. Social Media Presence meta tags
 - edit `/public/index.html`
 - for meta tags, you can use the generator [here](https://metatags.io/)
-- [twitter example](https://twitter.com/Andy8647L/status/1633956293986664448)
+- [twitter example](https://sanjay-portfolio-two.vercel.app/website.jpg)
 
 ```html
 <!-- Social Media Previews -->
@@ -122,14 +122,14 @@ const firebaseConfig = {
     <meta property="og:url" content="https://sanjay-portfolio-two.vercel.app/">
     <meta property="og:title" content="Sanjay Nainwal, Full Stack Developer(BE-Heavy)">
     <meta property="og:description" content="Full Stack Developer(Be-heavy) based in India, passionate about building scalable web applications, learning new technologies, traveling and exploring new places.">
-    <meta property="og:image" content="https://andy8647.com/website.jpg">
+    <meta property="og:image" content="https://sanjay-portfolio-two.vercel.app/website.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://sanjay-portfolio-two.vercel.app/">
     <meta property="twitter:title" content="Sanjay Nainwal, Full Stack Developer(BE-Heavy)">
     <meta property="twitter:description" content="Full Stack Developer(Be-heavy) based in India, passionate about building scalable web applications, learning new technologies, traveling and exploring new places.">
-    <meta property="twitter:image" content="https://andy8647.com/website.jpg">
+    <meta property="twitter:image" content="https://sanjay-portfolio-two.vercel.app/website.jpg">
 ```
 
 ```
