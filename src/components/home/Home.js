@@ -59,7 +59,7 @@ export default function Home({ darkMode }) {
         <h2>I'm {info.position}.</h2>
         <Box component={'ul'} p={'0.8rem'}>
           {info.miniBio.map((bio, index) => (
-            <EmojiBullet key={index} emoji={bio.emoji} text={bio.text} />
+            <EmojiBullet key={index} emoji={bio.emoji} text={bio.text} link={bio.link} />
           ))}
         </Box>
         <Box

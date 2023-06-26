@@ -20,14 +20,17 @@ export const info = {
     {
       emoji: '🇮🇳',
       text: 'Based in Dehardun, India',
+      link: 'https://www.google.com/maps/place/Dehradun,+Uttarakhand/@30.3254026,77.934733,12z/data=!3m1!4b1!4m6!3m5!1s0x390929c356c888af:0x4c3562c032518799!8m2!3d30.3164945!4d78.0321918!16zL20vMDRiejJm?entry=ttu'
     },
     {
       emoji: '💻',
       text: 'Software Development Engineer II at BharatPe',
+      link: 'https://bharatpe.com/'
     },
     {
       emoji: '📧',
-      text: 'sanjaynainwal129@gmail.com',
+      link: 'mailto:sanjaynainwal129@gmail.com',
+      text: 'sanjaynainwal129@gmail.com'
     },
   ],
   socials: [
