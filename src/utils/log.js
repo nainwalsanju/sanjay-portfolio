@@ -2,13 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics, logEvent, isSupported } from 'firebase/analytics';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCCsXxxBUkFuPK3b6zZRQB0lsICFmuG2Uc",
-  authDomain: "react-resume-c803b.firebaseapp.com",
-  projectId: "react-resume-c803b",
-  storageBucket: "react-resume-c803b.appspot.com",
-  messagingSenderId: "998691702191",
-  appId: "1:998691702191:web:6985bce782ebc833ab1b5a",
-  measurementId: "G-WXRWNKJ7LR"
+  apiKey: "AIzaSyAZXNE0vgySH8eHZzP1_3XYlHHl4nNUh7w",
+  authDomain: "sanjay-portfolio-aa3b5.firebaseapp.com",
+  projectId: "sanjay-portfolio-aa3b5",
+  storageBucket: "sanjay-portfolio-aa3b5.appspot.com",
+  messagingSenderId: "688507155002",
+  appId: "1:688507155002:web:f6e3b95f4f9261420e3b03",
+  measurementId: "G-WJR799DQGP"
 };
 
 const app = initializeApp(firebaseConfig);
