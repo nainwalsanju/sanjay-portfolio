@@ -183,7 +183,7 @@ export const info = {
     {
       company: "Virtuelly Inc. - Seattle, USA (Remote)",
       position: "Software Development Engineer",
-      duration: "April 2021 - December 2022",
+      duration: "April 2021 - January 2022",
       description: [
         "Developed and launched an interactive low latency video conferencing application with multiple interactive environments.",
         "Developed and improved UX by implementing Interaction Creation Feature, REST APIs, and integrating payment gateways for Virtuelly Website providing entertainment experiences in production environment.",
