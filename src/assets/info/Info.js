@@ -54,11 +54,16 @@ export const info = {
       icon: 'fa fa-linkedin',
       label: 'linkedin',
     },
-    // {
-    //   link: 'https://twitter.com/nainwalsanju',
-    //   icon: 'fa fa-twitter',
-    //   label: 'twitter',
-    // },
+    {
+      link: 'https://twitter.com/sanjay__nainwal',
+      icon: 'fa fa-twitter',
+      label: 'twitter',
+    },
+    {
+      link: 'https://leetcode.com/sanjay_nainwal/',
+      icon: 'fa fa-code',
+      label: 'leetcode',
+    },
   ],
   bio: "Meet Sanjay Nainwal, a Full Stack Developer (BE-Heavy) with a passion for building scalable web applications. Experienced in Java, WebRTC, and the Spring Framework. Proficient in RESTful API and SOAP API design, working with SQL and Non-SQL databases. Currently an SDE-2 at BharatPe, contributing to the growth and success of a dynamic team. Enjoys traveling and exploring new places. Based in Dehradun, India. Results-driven with a demonstrated ability to develop efficient anomaly detectors and network security solutions. Committed to continuous learning and adapting to new technologies.",
   skills: {

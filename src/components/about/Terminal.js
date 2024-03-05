@@ -31,7 +31,7 @@ function Terminal(props) {
         px={{ xs: '2rem', md: '3rem' }}
         borderRadius={'0 0 0.5rem 0.5rem'}
         sx={{ backgroundColor: '#27242f' }}
-        fontSize={'1.5rem'}
+        fontSize={'1.2rem'}
         fontFamily={'Courier New, Courier, monospace'}
       >
         {text}
