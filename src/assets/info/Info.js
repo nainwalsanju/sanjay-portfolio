@@ -35,7 +35,7 @@ export const info = {
   ],
   socials: [
     {
-      link: 'https://drive.google.com/file/d/1HNIvrMgMgElwoCgRaK4OI9zkhgxpBqVx/view?usp=sharing', // this should be https://yourname.com/resume.pdf once you've deployed
+      link: 'https://drive.google.com/file/d/1DFgiZABKJtT2RbzHSuf8bgFG8QIZeKyf/view?usp=sharing', // this should be https://yourname.com/resume.pdf once you've deployed
       icon: 'fa fa-file-pdf-o',
       label: 'resume',
     },
@@ -63,6 +63,11 @@ export const info = {
       link: 'https://leetcode.com/sanjay_nainwal/',
       icon: 'fa fa-code',
       label: 'leetcode',
+    },
+    {
+      link: 'https://stackoverflow.com/users/12658226/sanjay-nainwal',
+      icon: 'fa fa-stack-overflow',
+      label: 'stack-overflow',
     },
   ],
   bio: "Meet Sanjay Nainwal, a Full Stack Developer (BE-Heavy) with a passion for building scalable web applications. Experienced in Java, WebRTC, and the Spring Framework. Proficient in RESTful API and SOAP API design, working with SQL and Non-SQL databases. Currently an SDE-2 at BharatPe, contributing to the growth and success of a dynamic team. Enjoys traveling and exploring new places. Based in Dehradun, India. Results-driven with a demonstrated ability to develop efficient anomaly detectors and network security solutions. Committed to continuous learning and adapting to new technologies.",
