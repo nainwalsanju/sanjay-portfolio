@@ -131,8 +131,7 @@ const headers = {
 };
 
 export const getDeepSeekResponse = async (message, history = []) => {
-  const systemMessage = `You are an AI assistant for a developer portfolio. 
-  Answer questions about the developer's skills, experience, and projects based on their portfolio content.`;
+  const combinedSystemMessage = systemMessage; // Using the detailed system message defined above
 
   const data = {
     model: 'deepseek-chat',
@@ -146,7 +145,15 @@ export const getDeepSeekResponse = async (message, history = []) => {
   };
 
   try {
-    const response = await axios.post(`${BASE_URL}/chat/completions`, data, { headers });
+    const response = await axios.post(`${BASE_URL}/chat/completions`, data, { 
+      headers,
+      timeout: 10000 // 10 second timeout
+    });
+    
+    if (!response.data?.choices?.[0]?.message?.content) {
+      throw new Error('Invalid API response format');
+    }
+    
     return response.data.choices[0].message.content;
   } catch (error) {
     console.error('API Error:', error.response?.data || error.message);

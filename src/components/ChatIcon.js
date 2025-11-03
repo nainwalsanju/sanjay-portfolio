@@ -14,9 +14,7 @@ export default function ChatIcon({ darkMode }) {
           position: 'fixed',
           bottom: '2rem',
           right: '2rem',
-          background: darkMode ? 
-            'linear-gradient(135deg, #2c3e50 0%, #3498db 100%)' : 
-            'linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%)',
+          background: `linear-gradient(135deg, ${styles.purple} 0%, ${styles.pink} 100%)`,
           color: darkMode ? '#fff' : '#2c3e50',
           width: '56px',
           height: '56px',

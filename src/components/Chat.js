@@ -10,8 +10,8 @@ const MessageBubble = styled(Box)(({ theme, role, darkmode }) => ({
   background: role === 'user' 
     ? `linear-gradient(135deg, ${styles.purple}, ${styles.pink})`
     : darkmode === 'true' 
-      ? 'rgba(255, 255, 255, 0.1)' 
-      : 'rgba(0, 0, 0, 0.05)',
+      ? 'rgba(255, 255, 255, 0.08)' 
+      : 'rgba(0, 0, 0, 0.03)',
   color: role === 'user' ? '#fff' : darkmode === 'true' ? '#fff' : styles.dark,
   fontSize: '0.95rem',
   lineHeight: 1.6,
