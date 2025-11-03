@@ -1,7 +1,13 @@
 import axios from 'axios';
 
+// Read API key from environment. Keep logs minimal to avoid leaking secrets.
 const API_KEY = process.env.REACT_APP_DEEPSEEK_API_KEY;
-const BASE_URL = 'https://api.deepseek.com/v1'; // OpenAI-compatible endpoint :cite[1]:cite[5]
+if (!API_KEY) {
+  console.error('DeepSeek API key is not set in environment variables');
+}
+
+// Direct production endpoint
+const BASE_URL = 'https://api.deepseek.com/v1';
 
 const systemMessage = `You are an AI assistant for Sanjay's developer portfolio. 
 Answer questions about skills, experience, and projects using these rules:
@@ -124,14 +130,11 @@ Graduation Date: June 2020
 
 `;
 
-// Create headers configuration
-const headers = {
-  'Content-Type': 'application/json',
-  'Authorization': `Bearer ${API_KEY}`
-};
-
 export const getDeepSeekResponse = async (message, history = []) => {
-  const combinedSystemMessage = systemMessage; // Using the detailed system message defined above
+  // Validate API key existence at runtime
+  if (!API_KEY) {
+    throw new Error('DeepSeek API key is not set. Please set REACT_APP_DEEPSEEK_API_KEY in your environment and restart the dev server.');
+  }
 
   const data = {
     model: 'deepseek-chat',
@@ -145,18 +148,54 @@ export const getDeepSeekResponse = async (message, history = []) => {
   };
 
   try {
-    const response = await axios.post(`${BASE_URL}/chat/completions`, data, { 
-      headers,
-      timeout: 10000 // 10 second timeout
+    const response = await axios.post(`${BASE_URL}/chat/completions`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${API_KEY}`
+      },
+      timeout: 30000, // 30 second timeout for better reliability
     });
     
+    // Validate response structure
     if (!response.data?.choices?.[0]?.message?.content) {
+      console.error('Invalid API response structure:', response.data);
       throw new Error('Invalid API response format');
     }
     
     return response.data.choices[0].message.content;
+    
   } catch (error) {
-    console.error('API Error:', error.response?.data || error.message);
-    throw error;
+    console.error('DeepSeek API Error:', error.message);
+    
+    if (error.response) {
+      // Server responded with an error status
+      const status = error.response.status;
+      const errorMessage = error.response.data?.error?.message || error.response.data?.message;
+      
+      console.error('API Response Error:', {
+        status,
+        message: errorMessage,
+        data: error.response.data
+      });
+      
+      // Provide specific error messages based on status code
+      if (status === 401) {
+        throw new Error('Invalid API key. Please check your REACT_APP_DEEPSEEK_API_KEY.');
+      } else if (status === 429) {
+        throw new Error('Rate limit exceeded. Please try again later.');
+      } else if (status === 500) {
+        throw new Error('DeepSeek server error. Please try again later.');
+      } else {
+        throw new Error(errorMessage || `API error (${status}). Please try again.`);
+      }
+    } else if (error.request) {
+      // Request was made but no response received
+      console.error('No response received from API');
+      throw new Error('Network error. Please check your internet connection and try again.');
+    } else {
+      // Error in request setup
+      throw new Error(error.message || 'Failed to communicate with DeepSeek API. Please try again.');
+    }
   }
 };
