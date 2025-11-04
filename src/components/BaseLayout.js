@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Box, Grid } from '@mui/material';
 import ParticlesBg from './particles/ParticlesBg';
 import { logGa } from '../utils/log';
+import ChatIcon from './ChatIcon';
 
 export default function BaseLayout() {
   let [darkMode, setDarkMode] = useState(false);
@@ -82,6 +83,7 @@ export default function BaseLayout() {
           </Box>
         </Grid> */}
       </Grid>
+      <ChatIcon darkMode={darkMode} />
     </Box>
   );
 }
