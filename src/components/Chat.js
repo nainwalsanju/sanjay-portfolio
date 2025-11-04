@@ -457,7 +457,7 @@ const Chat = ({ open, setOpen, darkMode }) => {
                   padding: 0,
                   borderRadius: '10px',
                   background: 'linear-gradient(135deg, rgb(0, 255, 164), rgb(166, 104, 255))',
-                  color: darkMode ? 'rgb(220, 214, 200)' : '#FFFFFF',
+                  color: '#FFFFFF',
                   boxShadow: '0 4px 12px rgba(0,255,164,0.2)',
                   transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                   '&:hover': {
