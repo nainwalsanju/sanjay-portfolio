@@ -16,16 +16,21 @@ export default function ChatIcon({ darkMode }) {
             position: 'fixed',
             bottom: '2rem',
             right: '2rem',
-            background: '#22304A',
-            color: '#F5F7FA',
-            border: '2px solid #09C6F9',
-            width: 64,
-            height: 64,
+            background: 'linear-gradient(135deg, rgb(0, 255, 164), rgb(166, 104, 255))',
+            color: '#FFFFFF',
+            width: 60,
+            height: 60,
             zIndex: 1200,
-            boxShadow: '0 8px 24px rgba(2,44,112,0.18)',
-            transition: 'transform 0.25s ease, box-shadow 0.25s ease',
+            boxShadow: '0 12px 32px rgba(0,255,164,0.2)',
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            border: 'none',
             '&:hover': {
-              transform: 'translateY(-3px) scale(1.03)',
+              background: 'linear-gradient(135deg, rgb(0, 255, 164), rgb(166, 104, 255))',
+              transform: 'translateY(-4px)',
+              boxShadow: '0 16px 40px rgba(166,104,255,0.25)',
+            },
+            '&:active': {
+              transform: 'translateY(-2px)',
             }
           }}
         >

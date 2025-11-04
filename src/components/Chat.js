@@ -18,7 +18,7 @@ import {
   ListItemText,
   Divider
 } from '@mui/material';
-import { Close, Send, AttachFile, InsertPhoto, Videocam, VolumeUp, VolumeOff, Minimize } from '@mui/icons-material';
+import { Close, Send, AttachFile } from '@mui/icons-material';
 import styles from '../variables.modules.scss';
 // Syntax highlighter (Prism) — install `react-syntax-highlighter` to enable
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -28,24 +28,44 @@ import remarkGfm from 'remark-gfm';
 
 const MessageBubble = styled(Box)(({ theme, role, darkmode }) => {
   const isDarkMode = darkmode === 'true' || darkmode === true;
-  // theme from user proposal
-  const primary = '#22304A';
-  const accent = '#09C6F9';
-  const textColor = '#F5F7FA';
+  // Theme colors with new gradient
+  const userGradient = 'linear-gradient(135deg, rgb(0, 255, 164), rgb(166, 104, 255))';
+  const assistantBgDark = '#2a2a2a';
+  const assistantBgLight = '#f8f8f8';
+  const textColor = role === 'assistant' ? (isDarkMode ? '#f8f8f8' : '#1f1f1f') : '#FFFFFF';
 
   return {
-    padding: '12px 16px',
-    borderRadius: role === 'user' ? '18px 18px 6px 18px' : '18px 18px 18px 6px',
-    background: role === 'user' ? accent : (isDarkMode ? '#243957' : primary),
-    color: role === 'user' ? '#031826' : textColor,
+    padding: '14px 18px',
+    borderRadius: role === 'user' ? '20px 20px 4px 20px' : '20px 20px 20px 4px',
+    background: role === 'user' ? userGradient : (isDarkMode ? assistantBgDark : assistantBgLight),
+    color: textColor,
     fontSize: '0.95rem',
-    lineHeight: 1.6,
+    fontWeight: 400,
+    lineHeight: 1.7,
+    letterSpacing: '0.01em',
     maxWidth: '85%',
     wordBreak: 'break-word',
-    boxShadow: '0 10px 30px rgba(2,44,112,0.12)',
-    transition: 'all 0.28s ease',
+    boxShadow: role === 'user' 
+      ? '0 8px 24px rgba(9,198,249,0.2)' 
+      : '0 8px 24px rgba(34,48,74,0.15)',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     marginBottom: 12,
-    alignSelf: role === 'user' ? 'flex-end' : 'flex-start'
+    alignSelf: role === 'user' ? 'flex-end' : 'flex-start',
+    '& pre': {
+      margin: '8px 0',
+      borderRadius: '12px',
+      overflow: 'hidden'
+    },
+    '& code': {
+      fontFamily: '"Roboto Mono", monospace',
+      fontSize: '0.9em'
+    },
+    '& p:first-of-type': {
+      marginTop: 0
+    },
+    '& p:last-of-type': {
+      marginBottom: 0
+    }
   };
 });
 
@@ -54,31 +74,10 @@ const Chat = ({ open, setOpen, darkMode }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [attachment, setAttachment] = useState(null);
-  const [minimized, setMinimized] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
   const fileInputRef = useRef(null);
   const listRef = useRef(null);
 
-  // play short UI sounds using WebAudio; avoids bundling audio files
-  const playSound = (type = 'send') => {
-    if (!soundEnabled) return;
-    try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const o = ctx.createOscillator();
-      const g = ctx.createGain();
-      o.type = 'sine';
-      o.frequency.value = type === 'receive' ? 660 : 880;
-      g.gain.setValueAtTime(0.0001, ctx.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + 0.01);
-      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.18);
-      o.connect(g);
-      g.connect(ctx.destination);
-      o.start();
-      o.stop(ctx.currentTime + 0.19);
-    } catch (e) {
-      // ignore if audio context not available
-    }
-  };
+  // No sound effects
 
   useEffect(() => {
     // scroll to bottom when messages change
@@ -112,8 +111,6 @@ const Chat = ({ open, setOpen, darkMode }) => {
       const userMessage = { id: now, role: 'user', content: annotatedMessage, time: new Date().toISOString(), status: 'sent' };
       if (attachment) userMessage.file = attachment;
       setMessages(prev => [...prev, userMessage]);
-      playSound('send');
-
       const result = await getDeepSeekResponse(annotatedMessage, messages);
       const MAX_WORDS = 400;
       const truncatedResponse = result.split(' ').slice(0, MAX_WORDS).join(' ') + 
@@ -124,7 +121,6 @@ const Chat = ({ open, setOpen, darkMode }) => {
         const updated = prev.map(m => m.id === userMessage.id ? { ...m, status: 'delivered' } : m);
         return [...updated, aiMessage];
       });
-      playSound('receive');
       setInput('');
       setAttachment(null);
     } catch (error) {
@@ -181,29 +177,16 @@ const Chat = ({ open, setOpen, darkMode }) => {
     );
   };
 
-  // mark assistant messages as read when chat is visible and not minimized
+  // mark assistant messages as read when chat is visible
   useEffect(() => {
-    if (open && !minimized) {
+    if (open) {
       setMessages(prev => prev.map(m => m.role === 'assistant' ? { ...m, read: true } : m));
     }
-  }, [open, minimized]);
+  }, [open]);
 
   if (!open) return null;
 
-  if (minimized) {
-    const unread = messages.filter(m => m.role === 'assistant' && !m.read).length;
-    return (
-      <Box sx={{ position: 'fixed', right: 20, bottom: 20, zIndex: 1400 }}>
-        <Button onClick={() => setMinimized(false)} sx={{ display: 'flex', alignItems: 'center', gap: 1, bgcolor: '#22304A', color: '#F5F7FA', px: 2, py: 1.25, borderRadius: 28, boxShadow: '0 8px 20px rgba(2,44,112,0.14)' }}>
-          <Avatar sx={{ width: 28, height: 28, bgcolor: '#09C6F9', color: '#082033', fontSize: 12 }}>SN</Avatar>
-          <Box sx={{ textAlign: 'left' }}>
-            <Typography variant="subtitle2" sx={{ fontSize: 13 }}>Portfolio Assistant</Typography>
-            <Typography variant="caption" sx={{ color: 'rgba(245,247,250,0.7)' }}>{unread ? `${unread} new` : 'open chat'}</Typography>
-          </Box>
-        </Button>
-      </Box>
-    );
-  }
+    // Chat is always shown when open
 
   return (
     <Box
@@ -213,60 +196,124 @@ const Chat = ({ open, setOpen, darkMode }) => {
         bottom: { xs: 12, sm: 20 },
         width: { xs: 'calc(100% - 24px)', sm: 380 },
         maxWidth: 520,
-        bgcolor: darkMode ? 'rgb(220,214,200)' : '#22304A',
-        borderRadius: '16px',
-        boxShadow: '0 12px 40px rgba(2,44,112,0.22)',
+        bgcolor: darkMode ? '#F8F9FA' : '#1A2634',
+        borderRadius: '24px',
+        boxShadow: '0 24px 48px rgba(0,0,0,0.2)',
         zIndex: 1300,
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        maxHeight: '80vh'
+        maxHeight: '80vh',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        opacity: open ? 1 : 0,
+        transform: open ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)'
       }}
     >
       <style>{`
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes blink { 0% { opacity: 0.2 } 50% { opacity: 1 } 100% { opacity: 0.2 } }
-        .chat-scroll::-webkit-scrollbar { width: 10px; }
-        .chat-scroll::-webkit-scrollbar-track { background: transparent; }
-        .chat-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 8px; }
-        .chat-header-title { font-weight: 700; }
+        @keyframes fadeIn { 
+          from { 
+            opacity: 0; 
+            transform: translateY(12px); 
+          } 
+          to { 
+            opacity: 1; 
+            transform: translateY(0); 
+          } 
+        }
+        @keyframes blink { 
+          0% { opacity: 0.2; transform: scale(0.9) } 
+          50% { opacity: 1; transform: scale(1.1) } 
+          100% { opacity: 0.2; transform: scale(0.9) } 
+        }
+        @keyframes pulse {
+          0% { box-shadow: 0 0 0 0 rgba(9,198,249,0.4) }
+          70% { box-shadow: 0 0 0 6px rgba(9,198,249,0) }
+          100% { box-shadow: 0 0 0 0 rgba(9,198,249,0) }
+        }
+        @keyframes slideIn {
+          from { transform: translateX(20px); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        .chat-scroll::-webkit-scrollbar { 
+          width: 8px; 
+        }
+        .chat-scroll::-webkit-scrollbar-track { 
+          background: transparent; 
+          margin: 4px;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb { 
+          background: rgba(9,198,249,0.2); 
+          border-radius: 20px;
+          border: 2px solid transparent;
+          background-clip: padding-box;
+          transition: all 0.2s;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb:hover {
+          background: rgba(9,198,249,0.4);
+          border: 1px solid transparent;
+        }
+        .message-enter {
+          animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .typing-indicator {
+          animation: blink 1.4s infinite;
+        }
       `}</style>
-      <AppBar position="static" elevation={0} sx={{ bgcolor: darkMode ? 'rgb(220,214,200)' : '#22304A', boxShadow: 'none', px: 2, py: 1 }}>
-          <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Box>
-              <Typography variant="h6" sx={{
-                background: `linear-gradient(90deg, #09C6F9 0%, #1E88E5 100%)`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                fontWeight: 700,
-                fontSize: '1rem',
-                overflowWrap: 'anywhere',
-                lineHeight: 1
-              }}>
-                Portfolio Assistant
-              </Typography>
-              <Typography variant="caption" sx={{ color: darkMode ? '#0d252e' : '#e6f7f0' }}>
-                Ask about projects, experience, or upload files
-              </Typography>
+      <AppBar position="static" elevation={0} sx={{ 
+        bgcolor: darkMode ? '#F8F9FA' : '#1A2634', 
+        boxShadow: 'none', 
+        px: 2, 
+        py: 1,
+        borderBottom: darkMode ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)'
+      }}>
+          <Toolbar sx={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            minHeight: '52px',
+            p: 0
+          }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Box 
+                component="img"
+                src={require('../assets/img/self.png')}
+                alt="Sanjay Nainwal"
+                sx={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+                }}
+              />
+              <Box>
+                <Typography sx={{
+                  background: '-webkit-linear-gradient(135deg, rgb(0, 255, 164), rgb(166, 104, 255))',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontWeight: 600,
+                  fontSize: '0.85rem',
+                  letterSpacing: '-0.01em',
+                  lineHeight: 1.2
+                }}>
+                  Ask me about Sanjay
+                </Typography>
+              </Box>
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <Tooltip title="Sanjay Nainwal">
-                <Avatar sx={{ bgcolor: '#22304A', width: 36, height: 36, fontWeight: 700, color: '#F5F7FA' }}>SN</Avatar>
-              </Tooltip>
-              <Tooltip title={soundEnabled ? 'Sound on' : 'Sound off'}>
-                <IconButton onClick={() => setSoundEnabled(s => !s)}>
-                  {soundEnabled ? <VolumeUp sx={{ color: darkMode ? '#0d252e' : '#fff' }} /> : <VolumeOff sx={{ color: darkMode ? '#0d252e' : '#fff' }} />}
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Minimize">
-                <IconButton onClick={() => setMinimized(true)}>
-                  <Minimize sx={{ color: darkMode ? '#0d252e' : '#fff' }} />
-                </IconButton>
-              </Tooltip>
-              <IconButton onClick={() => setOpen(false)}>
-                <Close sx={{ color: darkMode ? '#0d252e' : '#fff' }} />
-              </IconButton>
-            </Box>
+            <IconButton 
+              onClick={() => setOpen(false)}
+              size="small"
+              sx={{
+                color: darkMode ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.7)',
+                padding: '4px',
+                '&:hover': {
+                  color: darkMode ? 'rgba(0,0,0,0.7)' : '#fff',
+                  background: 'rgba(0,0,0,0.04)'
+                }
+              }}
+            >
+              <Close sx={{ fontSize: 18 }} />
+            </IconButton>
           </Toolbar>
         </AppBar>
 
@@ -326,67 +373,136 @@ const Chat = ({ open, setOpen, darkMode }) => {
           )}
         </Box>
 
-        <Box component="form" onSubmit={handleSubmit} sx={{ borderTop: darkMode ? '1px solid rgba(0,0,0,0.06)' : '1px solid rgba(255,255,255,0.04)', p: 2 }}>
+        <Box 
+          component="form" 
+          onSubmit={handleSubmit} 
+          sx={{ 
+            borderTop: darkMode ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)',
+            p: 1.5,
+            backgroundColor: darkMode ? '#f8f8f8' : '#1f1f1f'
+          }}
+        >
           <input ref={fileInputRef} type="file" style={{ display: 'none' }} onChange={handleFileChange} />
-          <Box display="flex" gap={1} alignItems="center">
+          <Box sx={{ position: 'relative' }}>
             <InputBase
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about my experience, projects, or skills..."
+              onKeyDown={(e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                  handleSubmit(e);
+                }
+              }}
+              placeholder="ask about projects, experience, skills..."
               disabled={loading}
+              multiline
+              maxRows={4}
               sx={{
-                flex: 1,
-                padding: '12px 14px',
+                width: '100%',
+                padding: '10px 84px 10px 14px', // Space for buttons
                 borderRadius: '12px',
                 border: '1px solid',
-                borderColor: darkMode ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.06)',
-                background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)',
-                color: darkMode ? '#0d252e' : '#e6f7f0',
-                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.02)'
+                borderColor: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.08)',
+                background: darkMode ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.03)',
+                color: darkMode ? '#1A2634' : '#F8F9FA',
+                boxShadow: darkMode 
+                  ? 'inset 0 1px 2px rgba(0,0,0,0.03)' 
+                  : 'inset 0 1px 2px rgba(0,0,0,0.1)',
+                transition: 'all 0.2s ease',
+                fontSize: '0.875rem',
+                lineHeight: 1.5,
+                '&:hover': {
+                  borderColor: darkMode ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.12)',
+                  background: darkMode ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.05)'
+                },
+                '&.Mui-focused': {
+                  borderColor: '#09C6F9',
+                  boxShadow: '0 0 0 1px rgba(9,198,249,0.2)'
+                }
               }}
             />
-
-            <Box display="flex" gap={1} alignItems="center">
-              <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
-              <Tooltip title="Attach file">
-                <IconButton onClick={triggerFileSelect}>
-                  <AttachFile />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Attach image">
-                <IconButton onClick={triggerFileSelect}>
-                  <InsertPhoto />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Attach video">
-                <IconButton onClick={triggerFileSelect}>
-                  <Videocam />
+            
+            <Box sx={{ 
+              position: 'absolute',
+              right: 6,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              display: 'flex',
+              gap: 0.5,
+              alignItems: 'center'
+            }}>
+              <Tooltip title="Add attachment">
+                <IconButton 
+                  onClick={triggerFileSelect}
+                  size="small"
+                  sx={{
+                    color: darkMode ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.4)',
+                    padding: '6px',
+                    '&:hover': {
+                      color: '#09C6F9',
+                      background: darkMode ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)'
+                    }
+                  }}
+                >
+                  <AttachFile sx={{ fontSize: 18 }} />
                 </IconButton>
               </Tooltip>
 
               <Button
                 type="submit"
-                variant="contained"
                 disabled={loading}
                 sx={{
-                  background: 'linear-gradient(135deg,#09C6F9 0%, #1E88E5 100%)',
-                  color: '#082033',
-                  borderRadius: '999px',
-                  padding: '10px 14px',
-                  minWidth: 56,
-                  height: 44,
-                  boxShadow: '0 8px 28px rgba(14,120,200,0.18)'
+                  minWidth: 36,
+                  width: 36,
+                  height: 36,
+                  padding: 0,
+                  borderRadius: '10px',
+                  background: 'linear-gradient(135deg, rgb(0, 255, 164), rgb(166, 104, 255))',
+                  color: darkMode ? 'rgb(220, 214, 200)' : '#FFFFFF',
+                  boxShadow: '0 4px 12px rgba(0,255,164,0.2)',
+                  transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                  '&:hover': {
+                    background: 'linear-gradient(135deg, rgb(0, 255, 164), rgb(166, 104, 255))',
+                    transform: 'translateY(-1px)',
+                    boxShadow: '0 6px 16px rgba(166,104,255,0.25)'
+                  }
                 }}
               >
-                <Send sx={{ fontSize: 20 }} />
+                <Send sx={{ fontSize: 18 }} />
               </Button>
             </Box>
           </Box>
 
           {attachment && (
-            <Box mt={1} display="flex" alignItems="center" gap={1}>
-              <Box sx={{ fontSize: '0.9rem' }}>{attachment.name}</Box>
-              <Button size="small" onClick={() => setAttachment(null)}>Remove</Button>
+            <Box mt={1} display="flex" alignItems="center" gap={1} sx={{
+              background: darkMode ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.03)',
+              borderRadius: '8px',
+              padding: '4px 8px',
+              fontSize: '0.75rem'
+            }}>
+              <AttachFile sx={{ fontSize: 14, color: '#09C6F9' }} />
+              <Box sx={{ 
+                flex: 1,
+                color: darkMode ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.8)',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap'
+              }}>
+                {attachment.name}
+              </Box>
+              <IconButton 
+                size="small" 
+                onClick={() => setAttachment(null)}
+                sx={{
+                  padding: '2px',
+                  color: darkMode ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.4)',
+                  '&:hover': {
+                    color: '#09C6F9',
+                    background: 'rgba(9,198,249,0.08)'
+                  }
+                }}
+              >
+                <Close sx={{ fontSize: 14 }} />
+              </IconButton>
             </Box>
           )}
         </Box>
