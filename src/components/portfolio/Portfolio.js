@@ -1,14 +1,33 @@
 import React from 'react';
 import PortfolioBlock from './PortfolioBlock';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Container } from '@mui/material';
 import { info } from '../../assets/info/Info';
 
 export default function Portfolio() {
   return (
-    <Box>
-      <Grid container display={'flex'} justifyContent={'center'} margin={'2%'}>
+    <Container 
+      maxWidth="lg" 
+      sx={{ 
+        padding: { xs: '16px', md: '32px' },
+        width: '100%',
+        boxSizing: 'border-box',
+        margin: '0 auto'
+      }}
+    >
+      <Grid 
+        container 
+        spacing={{ xs: 2, md: 3 }}
+        width={'100%'}
+        margin={0}
+      >
         {info.portfolio.map((project, index) => (
-          <Grid item xs={12} md={6} key={index}>
+          <Grid 
+            item 
+            xs={12} 
+            sm={6} 
+            key={index}
+            sx={{ width: '100%' }}
+          >
             <PortfolioBlock
               image={project.image}
               live={project.live}
@@ -18,6 +37,6 @@ export default function Portfolio() {
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Container>
   );
 }
