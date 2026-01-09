@@ -1,3 +1,4 @@
+// Color Variables
 $purple: #8d53ff;
 $pink: #ca6be6;
 $white: #f8f8f8;
@@ -7,8 +8,28 @@ $yellow: #ffbd2e;
 $green: #27c93f;
 $lightgray: #c9c9c9;
 
+// Chat-specific colors
+$chat-user-bg-dark: #2c3e50;
+$chat-assistant-bg-dark: #34495e;
+$chat-user-bg-light: #3498db;
+$chat-assistant-bg-light: #ecf0f1;
+
+// Transitions
 $transition: all 250ms ease;
 
+// Shadows
 .shadowed {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+}
+
+// Export for JavaScript usage
+:export {
+  purple: #8d53ff;
+  pink: #ca6be6;
+  dark: #1f1f1f;
+  white: #f8f8f8;
+  red: #ff6057;
+  yellow: #ffbd2e;
+  green: #27c93f;
+  lightgray: #c9c9c9;
 }

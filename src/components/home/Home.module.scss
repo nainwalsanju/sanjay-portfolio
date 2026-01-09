@@ -36,6 +36,16 @@ a:hover {
   transition: color 200ms ease;
 }
 
+// Dark mode support
+:global(.dark) {
+  a {
+    color: $white;
+    &:hover {
+      color: $lightgray;
+    }
+  }
+}
+
 @keyframes wave {
   0% {
     transform: rotate(0deg);

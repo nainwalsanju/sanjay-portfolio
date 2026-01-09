@@ -12,17 +12,19 @@ const MessageBubble = ({ role, darkMode, children }) => {
   const assistantBgDark = '#2a2a2a';
   const assistantBgLight = '#f8f8f8';
   const textColor = role === 'assistant' ? (isDarkMode ? '#f8f8f8' : '#1f1f1f') : '#FFFFFF';
+  const linkColor = role === 'user' ? '#FFFFFF' : (isDarkMode ? '#09C6F9' : '#0066CC');
+  const linkHoverColor = role === 'user' ? '#E0E0E0' : (isDarkMode ? '#07B0E0' : '#004499');
 
   return (
     <Box
       sx={{
-        padding: '14px 18px',
-        borderRadius: role === 'user' ? '20px 20px 4px 20px' : '20px 20px 20px 4px',
+        padding: '12px 16px',
+        borderRadius: role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
         background: role === 'user' ? userGradient : (isDarkMode ? assistantBgDark : assistantBgLight),
         color: textColor,
-        fontSize: '0.95rem',
+        fontSize: '0.85rem',
         fontWeight: 400,
-        lineHeight: 1.7,
+        lineHeight: 1.6,
         letterSpacing: '0.01em',
         maxWidth: '85%',
         wordBreak: 'break-word',
@@ -30,22 +32,50 @@ const MessageBubble = ({ role, darkMode, children }) => {
           ? '0 8px 24px rgba(9,198,249,0.2)'
           : '0 8px 24px rgba(34,48,74,0.15)',
         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-        marginBottom: 12,
+        marginBottom: 8,
         alignSelf: role === 'user' ? 'flex-end' : 'flex-start',
         '& pre': {
           margin: '8px 0',
-          borderRadius: '12px',
-          overflow: 'hidden'
+          borderRadius: '8px',
+          overflow: 'hidden',
+          fontSize: '0.8em'
         },
         '& code': {
           fontFamily: '"Roboto Mono", monospace',
-          fontSize: '0.9em'
+          fontSize: '0.85em',
+          background: 'rgba(0,0,0,0.06)',
+          padding: '2px 4px',
+          borderRadius: 3
+        },
+        '& p': {
+          margin: '4px 0'
         },
         '& p:first-of-type': {
           marginTop: 0
         },
         '& p:last-of-type': {
           marginBottom: 0
+        },
+        '& ul, & ol': {
+          margin: '4px 0',
+          paddingLeft: '20px'
+        },
+        '& li': {
+          margin: '2px 0'
+        },
+        '& strong': {
+          fontWeight: 600
+        },
+        '& a': {
+          color: linkColor,
+          fontWeight: 600,
+          textDecoration: 'underline',
+          textUnderlineOffset: '2px',
+          transition: 'color 0.2s ease',
+          '&:hover': {
+            color: linkHoverColor,
+            opacity: 0.9
+          }
         }
       }}
     >
@@ -77,7 +107,14 @@ export const renderMessageContent = (msg) => {
                 </SyntaxHighlighter>
               );
             }
-            return <code style={{ background: 'rgba(0,0,0,0.06)', padding: '2px 6px', borderRadius: 4 }} {...props}>{children}</code>;
+            return <code {...props}>{children}</code>;
+          },
+          a({ node, href, children, ...props }) {
+            return (
+              <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+                {children}
+              </a>
+            );
           }
         }}
       >

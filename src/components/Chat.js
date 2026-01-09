@@ -5,8 +5,6 @@ import ChatHeader from './chat/ChatHeader';
 import MessageList from './chat/MessageList';
 import ChatInput from './chat/ChatInput';
 
-
-
 const Chat = ({ open, setOpen, darkMode }) => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
@@ -32,8 +30,12 @@ const Chat = ({ open, setOpen, darkMode }) => {
       const now = Date.now();
       const userMessage = { id: now, role: 'user', content: annotatedMessage, time: new Date().toISOString(), status: 'sent' };
       if (attachment) userMessage.file = attachment;
-      setMessages(prev => [...prev, userMessage]);
-      const result = await getDeepSeekResponse(annotatedMessage, messages);
+      
+      // Create updated messages array for API call
+      const updatedMessages = [...messages, userMessage];
+      setMessages(updatedMessages);
+      
+      const result = await getDeepSeekResponse(annotatedMessage, updatedMessages);
       const MAX_WORDS = 400;
       const truncatedResponse = result.split(' ').slice(0, MAX_WORDS).join(' ') +
         (result.split(' ').length > MAX_WORDS ? '...' : '');
@@ -64,8 +66,6 @@ const Chat = ({ open, setOpen, darkMode }) => {
 
   if (!open) return null;
 
-    // Chat is always shown when open
-
   return (
     <Box
       sx={{
@@ -74,7 +74,7 @@ const Chat = ({ open, setOpen, darkMode }) => {
         bottom: { xs: 12, sm: 20 },
         width: { xs: 'calc(100% - 24px)', sm: 380 },
         maxWidth: 520,
-        bgcolor: darkMode ? '#F8F9FA' : '#1A2634',
+        bgcolor: darkMode ? '#1A2634' : '#F8F9FA',
         borderRadius: '24px',
         boxShadow: '0 24px 48px rgba(0,0,0,0.2)',
         zIndex: 1300,
@@ -94,16 +94,16 @@ const Chat = ({ open, setOpen, darkMode }) => {
           100% { opacity: 0.2; transform: scale(0.9) }
         }
         .chat-scroll::-webkit-scrollbar {
-          width: 8px;
+          width: 6px;
         }
         .chat-scroll::-webkit-scrollbar-track {
           background: transparent;
-          margin: 4px;
+          margin: 2px;
         }
         .chat-scroll::-webkit-scrollbar-thumb {
           background: rgba(9,198,249,0.2);
-          border-radius: 20px;
-          border: 2px solid transparent;
+          border-radius: 10px;
+          border: 1px solid transparent;
           background-clip: padding-box;
           transition: all 0.2s;
         }

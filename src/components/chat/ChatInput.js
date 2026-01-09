@@ -21,9 +21,9 @@ const ChatInput = ({ input, setInput, onSubmit, loading, attachment, setAttachme
       component="form"
       onSubmit={onSubmit}
       sx={{
-        borderTop: darkMode ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)',
+        borderTop: darkMode ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.08)',
         p: 1.5,
-        backgroundColor: darkMode ? '#f8f8f8' : '#1f1f1f'
+        backgroundColor: darkMode ? '#1A2634' : '#F8F9FA'
       }}
     >
       <input ref={fileInputRef} type="file" style={{ display: 'none' }} onChange={handleFileChange} />
@@ -45,18 +45,18 @@ const ChatInput = ({ input, setInput, onSubmit, loading, attachment, setAttachme
             padding: '10px 84px 10px 14px', // Space for buttons
             borderRadius: '12px',
             border: '1px solid',
-            borderColor: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.08)',
-            background: darkMode ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.03)',
-            color: darkMode ? '#1A2634' : '#F8F9FA',
+            borderColor: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+            background: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.7)',
+            color: darkMode ? '#F8F9FA' : '#1A2634',
             boxShadow: darkMode
-              ? 'inset 0 1px 2px rgba(0,0,0,0.03)'
-              : 'inset 0 1px 2px rgba(0,0,0,0.1)',
+              ? 'inset 0 1px 2px rgba(0,0,0,0.1)'
+              : 'inset 0 1px 2px rgba(0,0,0,0.03)',
             transition: 'all 0.2s ease',
             fontSize: '0.875rem',
             lineHeight: 1.5,
             '&:hover': {
-              borderColor: darkMode ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.12)',
-              background: darkMode ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.05)'
+              borderColor: darkMode ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)',
+              background: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.9)'
             },
             '&.Mui-focused': {
               borderColor: '#09C6F9',
@@ -79,11 +79,11 @@ const ChatInput = ({ input, setInput, onSubmit, loading, attachment, setAttachme
               onClick={triggerFileSelect}
               size="small"
               sx={{
-                color: darkMode ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.4)',
+                color: darkMode ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.6)',
                 padding: '6px',
                 '&:hover': {
                   color: '#09C6F9',
-                  background: darkMode ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)'
+                  background: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.04)'
                 }
               }}
             >
@@ -118,7 +118,7 @@ const ChatInput = ({ input, setInput, onSubmit, loading, attachment, setAttachme
 
       {attachment && (
         <Box mt={1} display="flex" alignItems="center" gap={1} sx={{
-          background: darkMode ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.03)',
+          background: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)',
           borderRadius: '8px',
           padding: '4px 8px',
           fontSize: '0.75rem'
@@ -126,7 +126,7 @@ const ChatInput = ({ input, setInput, onSubmit, loading, attachment, setAttachme
           <AttachFile sx={{ fontSize: 14, color: '#09C6F9' }} />
           <Box sx={{
             flex: 1,
-            color: darkMode ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.8)',
+            color: darkMode ? 'rgba(255,255,255,0.8)' : 'rgba(0,0,0,0.7)',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap'
@@ -138,7 +138,7 @@ const ChatInput = ({ input, setInput, onSubmit, loading, attachment, setAttachme
             onClick={() => setAttachment(null)}
             sx={{
               padding: '2px',
-              color: darkMode ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.4)',
+              color: darkMode ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.6)',
               '&:hover': {
                 color: '#09C6F9',
                 background: 'rgba(9,198,249,0.08)'
