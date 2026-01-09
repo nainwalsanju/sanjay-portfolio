@@ -88,7 +88,17 @@ export const particleBgColors = () => {
   };
 };
 ```
-### 4. Google Analytics Credentials
+### 4. Environment Variables
+
+- Copy `.env.example` to `.env` and fill in your API keys
+
+#### DeepSeek API Key
+The chat feature requires a DeepSeek API key:
+```env
+REACT_APP_DEEPSEEK_API_KEY=your_deepseek_api_key_here
+```
+
+#### Google Analytics Credentials (Optional)
 
 - edit `/src/utils/log.js`
 
