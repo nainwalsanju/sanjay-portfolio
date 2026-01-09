@@ -6,11 +6,11 @@ const ChatHeader = ({ darkMode, onClose }) => {
   return (
     <Box
       sx={{
-        bgcolor: darkMode ? '#F8F9FA' : '#1A2634',
+        bgcolor: darkMode ? '#1A2634' : '#F8F9FA',
         boxShadow: 'none',
         px: 2,
         py: 1,
-        borderBottom: darkMode ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.06)'
+        borderBottom: darkMode ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.08)'
       }}
     >
       <Toolbar sx={{
@@ -51,11 +51,11 @@ const ChatHeader = ({ darkMode, onClose }) => {
           onClick={onClose}
           size="small"
           sx={{
-            color: darkMode ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.7)',
+            color: darkMode ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.5)',
             padding: '4px',
             '&:hover': {
-              color: darkMode ? 'rgba(0,0,0,0.7)' : '#fff',
-              background: 'rgba(0,0,0,0.04)'
+              color: darkMode ? '#fff' : 'rgba(0,0,0,0.7)',
+              background: darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.04)'
             }
           }}
         >
