@@ -32,8 +32,12 @@ const Chat = ({ open, setOpen, darkMode }) => {
       const now = Date.now();
       const userMessage = { id: now, role: 'user', content: annotatedMessage, time: new Date().toISOString(), status: 'sent' };
       if (attachment) userMessage.file = attachment;
-      setMessages(prev => [...prev, userMessage]);
-      const result = await getDeepSeekResponse(annotatedMessage, messages);
+      
+      // Create updated messages array for API call
+      const updatedMessages = [...messages, userMessage];
+      setMessages(updatedMessages);
+      
+      const result = await getDeepSeekResponse(annotatedMessage, updatedMessages);
       const MAX_WORDS = 400;
       const truncatedResponse = result.split(' ').slice(0, MAX_WORDS).join(' ') +
         (result.split(' ').length > MAX_WORDS ? '...' : '');
@@ -74,7 +78,7 @@ const Chat = ({ open, setOpen, darkMode }) => {
         bottom: { xs: 12, sm: 20 },
         width: { xs: 'calc(100% - 24px)', sm: 380 },
         maxWidth: 520,
-        bgcolor: darkMode ? '#F8F9FA' : '#1A2634',
+        bgcolor: darkMode ? '#1A2634' : '#F8F9FA',
         borderRadius: '24px',
         boxShadow: '0 24px 48px rgba(0,0,0,0.2)',
         zIndex: 1300,

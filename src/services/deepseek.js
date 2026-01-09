@@ -19,7 +19,7 @@ if (!API_KEY) {
  * DeepSeek API base URL for chat completions
  * Production endpoint for the DeepSeek API service
  */
-const BASE_URL = 'https://api.deepseek.com/v1';
+const BASE_URL = 'https://api.deepseek.com';
 
 /**
  * System Message for AI Assistant
