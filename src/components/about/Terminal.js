@@ -5,6 +5,10 @@ import { Box } from '@mui/material';
 
 const iconClass = 'fa fa-circle';
 
+// Theme-aware terminal colors
+const terminalHeaderBg = '#8c8c8c';
+const terminalBodyBg = '#27242f';
+
 function Terminal(props) {
   const { text } = props;
 
@@ -17,7 +21,7 @@ function Terminal(props) {
       mb={'4rem'}
     >
       <Box
-        sx={{ backgroundColor: '#8c8c8c' }}
+        sx={{ backgroundColor: terminalHeaderBg }}
         p={'0.5rem'}
         borderRadius={'0.5rem 0.5rem 0 0'}
         fontSize={'1rem'}
@@ -30,7 +34,7 @@ function Terminal(props) {
         py={{ xs: '1rem', md: '2rem' }}
         px={{ xs: '2rem', md: '3rem' }}
         borderRadius={'0 0 0.5rem 0.5rem'}
-        sx={{ backgroundColor: '#27242f' }}
+        sx={{ backgroundColor: terminalBodyBg }}
         fontSize={'1.2rem'}
         fontFamily={'Courier New, Courier, monospace'}
       >

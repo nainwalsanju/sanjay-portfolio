@@ -2,6 +2,15 @@ import React from 'react';
 import IconLink from './IconLink';
 import { Box } from '@mui/material';
 
+// Theme-aware colors for portfolio
+const portfolioBorderColor = '#000000';
+const portfolioShadow = '0 2.8px 2.2px rgba(0, 0, 0, 0.034),\n' +
+  '0 6.7px 5.3px rgba(0, 0, 0, 0.048),\n' +
+  '0 12.5px 10px rgba(0, 0, 0, 0.06),\n' +
+  '0 22.3px 17.9px rgba(0, 0, 0, 0.072),\n' +
+  '0 41.8px 33.4px rgba(0, 0, 0, 0.086),\n' +
+  '0 100px 80px rgba(0, 0, 0, 0.12)';
+
 function PortfolioBlock(props) {
   const { image, live, source, title } = props;
   return (
@@ -16,13 +25,7 @@ function PortfolioBlock(props) {
             style={{
                 objectFit: 'cover',
                 borderRadius: '25px',
-                boxShadow:
-                    '0 2.8px 2.2px rgba(0, 0, 0, 0.034),\n' +
-                    '0 6.7px 5.3px rgba(0, 0, 0, 0.048),\n' +
-                    '0 12.5px 10px rgba(0, 0, 0, 0.06),\n' +
-                    '0 22.3px 17.9px rgba(0, 0, 0, 0.072),\n' +
-                    '0 41.8px 33.4px rgba(0, 0, 0, 0.086),\n' +
-                    '0 100px 80px rgba(0, 0, 0, 0.12)',
+                boxShadow: portfolioShadow,
             }}
         />
       <h1 style={{ fontSize: '1rem', margin: '2%' }}>{title}</h1>
@@ -36,13 +39,13 @@ function PortfolioBlock(props) {
         py={'2rem'}
       >
         {live && (
-          <Box p={1} border={'2px solid black'} borderRadius={'25px'}>
+          <Box p={1} border={`2px solid ${portfolioBorderColor}`} borderRadius={'25px'}>
             <IconLink link={live} title={'Live Demo'} icon={'fa fa-safari'} />
           </Box>
         )}
 
         {source && (
-          <Box p={1} border={'2px solid black'} borderRadius={'25px'}>
+          <Box p={1} border={`2px solid ${portfolioBorderColor}`} borderRadius={'25px'}>
             <IconLink link={source} title={'Source Code'} icon={'fa fa-code'} />
           </Box>
         )}
