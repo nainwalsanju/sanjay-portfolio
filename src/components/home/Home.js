@@ -26,8 +26,8 @@ export default function Home({ darkMode }) {
         style={{ background: info.gradient, objectFit: 'cover' }}
         component={'img'}
         src={me}
-        width={{ xs: '30vh', md: '35vh' }}
-        height={{ xs: '30vh', md: '35vh' }}
+        width={{ xs: '35vh', md: '40vh' }}
+        height={{ xs: '35vh', md: '40vh' }}
         borderRadius={'50%'}
         p={'0.75rem'}
         mb={{ xs: '2rem', md: 0 }}
@@ -86,6 +86,11 @@ export default function Home({ darkMode }) {
           {info.position}
         </h2>
 
+        {/* Value Proposition */}
+        <p style={{ margin: '0 0 1.5rem 0', fontSize: '1.1rem', lineHeight: 1.6, color: darkMode ? '#cbd5e1' : '#334155', maxWidth: '600px' }}>
+          I ship scalable payment systems that handle millions of transactions. At BharatPe, I led a 10B+ record database migration (50% cost savings), architected a payment refund service processing 5M+ TPS with 99.95% uptime, and deployed fraud detection systems catching 99.9% of suspicious transactions. Specialist in high-throughput systems, distributed architectures, and fintech infrastructure.
+        </p>
+
         {/* Quick Stats */}
         <Grid container spacing={2} mb={3}>
           {info.quickStats.map((stat, index) => (
@@ -93,13 +98,12 @@ export default function Home({ darkMode }) {
               <Box
                 display="flex"
                 alignItems="center"
-                gap={1}
+                justifyContent="center"
                 padding={1.5}
                 borderRadius={2}
                 bgcolor={darkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'}
               >
-                <span style={{ fontSize: '1.2rem' }}>{stat.icon}</span>
-                <span style={{ fontSize: '0.9rem', fontWeight: 500 }}>{stat.label}</span>
+                <span style={{ fontSize: '0.9rem', fontWeight: 500, textAlign: 'center' }}>{stat.label}</span>
               </Box>
             </Grid>
           ))}

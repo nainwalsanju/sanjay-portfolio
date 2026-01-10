@@ -1,0 +1,41 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cartoonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a4d3d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d6f5f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#cartoonGrad)"/>
+
+  <!-- Original image (left side) -->
+  <rect x="40" y="50" width="120" height="120" rx="8" fill="none" stroke="#999" stroke-width="2"/>
+  <circle cx="85" cy="85" r="20" fill="#999" opacity="0.3"/>
+  <path d="M 60 110 Q 85 95 110 110" stroke="#999" stroke-width="2" fill="none" opacity="0.5"/>
+  <text x="100" y="185" font-size="11" fill="#999" text-anchor="middle">Original</text>
+
+  <!-- Arrow transformation -->
+  <path d="M 165 110 L 195 110 L 190 105 M 195 110 L 190 115" stroke="#00ff88" stroke-width="3" fill="none"/>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#00ff88"/>
+    </marker>
+  </defs>
+
+  <!-- Cartoon image (right side) -->
+  <rect x="240" y="50" width="120" height="120" rx="8" fill="none" stroke="#ff9d3d" stroke-width="2"/>
+  <!-- Cartoon face with bold lines -->
+  <circle cx="285" cy="85" r="20" fill="none" stroke="#ff9d3d" stroke-width="3"/>
+  <circle cx="275" cy="80" r="4" fill="#ff9d3d"/>
+  <circle cx="295" cy="80" r="4" fill="#ff9d3d"/>
+  <path d="M 270 95 Q 285 105 300 95" stroke="#ff9d3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <text x="300" y="185" font-size="11" fill="#ff9d3d" text-anchor="middle">Cartoon</text>
+
+  <!-- Filter effects at bottom -->
+  <circle cx="100" cy="230" r="8" fill="#ff9d3d" opacity="0.6"/>
+  <circle cx="140" cy="230" r="8" fill="#ff9d3d" opacity="0.4"/>
+  <circle cx="180" cy="230" r="8" fill="#ff9d3d" opacity="0.2"/>
+  <circle cx="220" cy="230" r="8" fill="#ff9d3d" opacity="0.3"/>
+  <circle cx="260" cy="230" r="8" fill="#ff9d3d" opacity="0.5"/>
+  <circle cx="300" cy="230" r="8" fill="#ff9d3d" opacity="0.4"/>
+  <text x="200" y="270" text-anchor="middle" font-size="11" fill="#ff9d3d">Edge Detection • Color Quantization • Smoothing</text>
+</svg>

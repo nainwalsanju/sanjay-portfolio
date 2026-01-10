@@ -27,12 +27,7 @@ export default function About() {
           Professional Bio
         </Typography>
         <Typography variant="body1" paragraph sx={{ color: '#e2e8f0', lineHeight: 1.8 }}>
-          I'm a Backend Engineer with 4+ years of experience building scalable systems at Razorpay and BharatPe. 
-          I specialize in distributed systems, payment infrastructure, and handling massive data migrations (10B+ records). 
-          Passionate about system design, performance optimization, and learning modern backend technologies.
-        </Typography>
-        <Typography variant="body1" paragraph sx={{ color: '#94a3b8' }}>
-          Currently: SDE2 @ BharatPe | Open to Senior Backend roles
+          {info.bio}
         </Typography>
       </Box>
 
@@ -85,7 +80,7 @@ export default function About() {
                                   {achievement.description}
                                 </Typography>
                                 <Typography variant="body2" sx={{ color: '#10b981', mt: 1 }}>
-                                  📈 {achievement.impact}
+                                  • {achievement.impact}
                                 </Typography>
                               </>
                             }
@@ -187,6 +182,27 @@ export default function About() {
             </Card>
           </Grid>
         </Grid>
+      </Box>
+
+      {/* Open Source & Code Quality Section */}
+      <Box width={'100%'} mb={6}>
+        <Typography variant="h4" gutterBottom sx={{ color: '#00D9FF', fontWeight: 'bold', mb: 4 }}>
+          Open Source & Code Quality
+        </Typography>
+        <Box display="flex" flexDirection="column" gap={2}>
+          <Typography variant="body1" sx={{ color: '#e2e8f0' }}>
+            GitHub: <a href="https://github.com/nainwalsanju" target="_blank" rel="noopener noreferrer" style={{ color: '#00D9FF' }}>github.com/nainwalsanju</a> (20+ repositories)
+          </Typography>
+          <Typography variant="body1" sx={{ color: '#cbd5e1' }}>
+            Notable repos: Portfolio Website, Virtuelly Platform, BharatPe Refund Service
+          </Typography>
+          <Typography variant="body1" sx={{ color: '#cbd5e1' }}>
+            Typical patterns: System design implementations, backend utilities, deployment configs
+          </Typography>
+          <Typography variant="body1" sx={{ color: '#cbd5e1' }}>
+            LeetCode: 1500+ rating | 200+ problems solved
+          </Typography>
+        </Box>
       </Box>
 
       {/* Interests Section */}

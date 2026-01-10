@@ -89,7 +89,7 @@ export default function Navbar({ darkMode, handleClick }) {
               sx={{ borderImageSource: info.gradient }}
             >
               <Link to={link.to} onClick={() => setActive(link.active)} className={Style.link}>
-                <p style={{ padding: '0.5rem 0', margin: 0 }}>{link.name}</p>
+                <p style={{ padding: '0.5rem 0', margin: 0, fontWeight: 'bold', transition: 'color 0.3s ease' }}>{link.name}</p>
               </Link>
             </Box>
           ))}
