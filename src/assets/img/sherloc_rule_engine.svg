@@ -1,0 +1,58 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sherlockGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d1a4d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4d2d6f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#sherlockGrad)"/>
+
+  <!-- Decision tree structure -->
+  <!-- Root node -->
+  <circle cx="200" cy="50" r="20" fill="none" stroke="#a78bfa" stroke-width="2"/>
+  <text x="200" y="56" text-anchor="middle" font-size="11" fill="#a78bfa" font-weight="bold">RULE</text>
+
+  <!-- Level 1 branches -->
+  <line x1="200" y1="70" x2="130" y2="110" stroke="#a78bfa" stroke-width="2" opacity="0.6"/>
+  <line x1="200" y1="70" x2="200" y2="110" stroke="#a78bfa" stroke-width="2" opacity="0.6"/>
+  <line x1="200" y1="70" x2="270" y2="110" stroke="#a78bfa" stroke-width="2" opacity="0.6"/>
+
+  <!-- Level 1 nodes -->
+  <rect x="110" y="110" width="40" height="40" rx="5" fill="none" stroke="#a78bfa" stroke-width="2"/>
+  <text x="130" y="135" text-anchor="middle" font-size="10" fill="#a78bfa">AMOUNT</text>
+
+  <rect x="180" y="110" width="40" height="40" rx="5" fill="none" stroke="#a78bfa" stroke-width="2"/>
+  <text x="200" y="135" text-anchor="middle" font-size="10" fill="#a78bfa">MERCHANT</text>
+
+  <rect x="250" y="110" width="40" height="40" rx="5" fill="none" stroke="#a78bfa" stroke-width="2"/>
+  <text x="270" y="135" text-anchor="middle" font-size="10" fill="#a78bfa">VENDOR</text>
+
+  <!-- Level 2 branches -->
+  <line x1="130" y1="150" x2="110" y2="180" stroke="#a78bfa" stroke-width="1.5" opacity="0.4"/>
+  <line x1="130" y1="150" x2="150" y2="180" stroke="#a78bfa" stroke-width="1.5" opacity="0.4"/>
+
+  <line x1="200" y1="150" x2="180" y2="180" stroke="#a78bfa" stroke-width="1.5" opacity="0.4"/>
+  <line x1="200" y1="150" x2="220" y2="180" stroke="#a78bfa" stroke-width="1.5" opacity="0.4"/>
+
+  <line x1="270" y1="150" x2="250" y2="180" stroke="#a78bfa" stroke-width="1.5" opacity="0.4"/>
+  <line x1="270" y1="150" x2="290" y2="180" stroke="#a78bfa" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Decision outcomes -->
+  <circle cx="110" cy="190" r="6" fill="#00ff88"/>
+  <circle cx="150" cy="190" r="6" fill="#ff6b6b"/>
+  <circle cx="180" cy="190" r="6" fill="#00ff88"/>
+  <circle cx="220" cy="190" r="6" fill="#ff6b6b"/>
+  <circle cx="250" cy="190" r="6" fill="#00ff88"/>
+  <circle cx="290" cy="190" r="6" fill="#ff6b6b"/>
+
+  <!-- Result indicators -->
+  <text x="110" y="220" text-anchor="middle" font-size="9" fill="#00ff88">APPROVE</text>
+  <text x="150" y="220" text-anchor="middle" font-size="9" fill="#ff6b6b">REJECT</text>
+  <text x="180" y="220" text-anchor="middle" font-size="9" fill="#00ff88">APPROVE</text>
+  <text x="220" y="220" text-anchor="middle" font-size="9" fill="#ff6b6b">REVIEW</text>
+  <text x="250" y="220" text-anchor="middle" font-size="9" fill="#00ff88">APPROVE</text>
+  <text x="290" y="220" text-anchor="middle" font-size="9" fill="#ff6b6b">BLOCK</text>
+
+  <!-- Bottom stats -->
+  <text x="200" y="270" text-anchor="middle" font-size="12" fill="#a78bfa" font-weight="bold">Real-time Decision Engine • Sub-millisecond Latency</text>
+</svg>
